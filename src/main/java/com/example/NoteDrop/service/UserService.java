@@ -1,11 +1,11 @@
 package com.example.NoteDrop.service;
 
-import com.example.NoteDrop.dto.LoginDTO;
-import com.example.NoteDrop.dto.UserDTO;
-import com.example.NoteDrop.response.LoginResponse;
+import com.example.NoteDrop.dto.UserSaveDTO;
+import com.example.NoteDrop.entity.User;
+import org.springframework.security.core.userdetails.UserDetails;
 
 public interface UserService {
-
-    String addUser(UserDTO userDTO);
-    LoginResponse loginUser(LoginDTO loginDTO);
+    void addUser(UserSaveDTO userSaveDTO);
+    boolean loginUser(String username, String password);
+    UserDetails loadUserByUsername(String username);
 }

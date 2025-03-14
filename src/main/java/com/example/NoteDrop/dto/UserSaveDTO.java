@@ -8,10 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class UserDTO {
-    private int userid;
+public class UserSaveDTO {
     private String username;
     private String password;
-
 
 }
