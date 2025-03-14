@@ -29,27 +29,24 @@ public class LoginBackendController {
         return "redirect:/login";
     }
 
-    @PostMapping("/login")
-    public String loginUser(@RequestParam String username,
-                            @RequestParam String password,
-                            Model model) {
-        boolean success = userService.loginUser(username, password);
-
-        if (success) {
-            UserDetails userDetails = userService.loadUserByUsername(username);
-            UsernamePasswordAuthenticationToken authToken =
-                    new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
-
-            SecurityContextHolder.getContext().setAuthentication(authToken);
-
-            return "redirect:/dashboard";
-        }
-
-        model.addAttribute("error", "Invalid username or password");
-        return "login";
-    }
-
-
-
+//    @PostMapping("/login")
+//    public String loginUser(@RequestParam String username,
+//                            @RequestParam String password,
+//                            Model model) {
+//        boolean success = userService.loginUser(username, password);
+//
+//        if (success) {
+//            UserDetails userDetails = userService.loadUserByUsername(username);
+//            UsernamePasswordAuthenticationToken authToken =
+//                    new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
+//
+//            SecurityContextHolder.getContext().setAuthentication(authToken);
+//
+//            return "redirect:/home";
+//        }
+//
+//        model.addAttribute("error", "Invalid username or password");
+//        return "login";
+//    }
 
 }

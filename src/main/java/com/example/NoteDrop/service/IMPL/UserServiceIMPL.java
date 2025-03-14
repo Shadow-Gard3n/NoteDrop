@@ -12,10 +12,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 @Service
-public class UserServiceIMPL implements UserService {
+public class UserServiceIMPL implements UserService, UserDetailsService {
 
     @Autowired
     private UserRepo userRepo;
@@ -34,26 +35,25 @@ public class UserServiceIMPL implements UserService {
         userRepo.save(user);
     }
 
-    @Override
-    public boolean loginUser(String username, String password) {
-        User user = userRepo.findByUsername(username).orElse(null);
-
-        if (user == null || !passwordEncoder.matches(password, user.getPassword())) {
-            return false;
-        }
-        return true;
-    }
+//    @Override
+//    public boolean loginUser(String username, String password) {
+//        User user = userRepo.findByUsername(username).orElse(null);
+//
+//        if (user == null || !passwordEncoder.matches(password, user.getPassword())) {
+//            return false;
+//        }
+//        return true;
+//    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepo.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),
-                new ArrayList<>()
+                Collections.emptyList()
         );
     }
-
 }
