@@ -16,6 +16,27 @@
         </div>
 
         <form th:action="@{/api/signup}" method="post" class="login-form">
+            <p th:if="${error}" class="error-message" style="
+            display: flex;
+            align-items: center;
+            color: #D32F2F;
+            background-color: #FFEBEE;
+            border: 1px solid #D32F2F;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-top: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px;">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+                <span th:text="${error}">Invalid input. Please try again!</span>
+            </p>
+
+
             <div class="input-group">
                 <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
                 <input type="text" name="username" placeholder="Username" required>
@@ -28,10 +49,20 @@
             </div>
 
 
-            <button type="submit" class="login-button">
+            <button type="submit" class="login-button" onclick="disableButton(this)">
                 Create Account
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                </svg>
             </button>
+
+            <script>
+                function disableButton(button) {
+                    button.disabled = true;
+                    button.innerHTML = 'Processing...';
+                    button.form.submit();
+                }
+            </script>
         </form>
 
         <p class="signup-link">

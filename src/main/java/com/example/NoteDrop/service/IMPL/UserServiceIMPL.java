@@ -24,6 +24,10 @@ public class UserServiceIMPL implements UserService, UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Override
+    public boolean userExists(String username) {
+        return userRepo.findByUsername(username).isPresent();
+    }
 
     @Override
     public void addUser(UserSaveDTO userSaveDTO) {

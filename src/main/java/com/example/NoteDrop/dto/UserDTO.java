@@ -12,6 +12,4 @@ public class UserDTO {
     private int userid;
     private String username;
     private String password;
-
-
 }

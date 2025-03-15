@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes Share - Share Your Knowledge</title>
+    <title>NoteDrop - Share Your Knowledge</title>
     <link rel="stylesheet" th:href="@{/css/homeStyle.css}">
 </head>
 <body>
@@ -14,12 +14,12 @@
             <input type="search" placeholder="Search notes..." class="search-input">
         </div>
 
-        <a href="/home" class="logo">
+        <a th:href="@{'/' + ${#authentication.name} + '/home'}" class="logo">
             <svg class="notes-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
             NoteDrop
         </a>
 
-        <a href="/profile" class="profile-btn">
+        <a th:href="@{'/' + ${#authentication.name} + '/profile'}" class="profile-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
             Profile
         </a>

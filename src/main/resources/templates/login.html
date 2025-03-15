@@ -32,21 +32,28 @@
                 <input type="password" name="password" placeholder="Password" required>
             </div>
 
-            <button type="submit" class="login-button">
+            <button type="submit" class="login-button" onclick="disableButton(this)">
                 Sign In
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M5 12h14"/>
                     <path d="m12 5 7 7-7 7"/>
                 </svg>
             </button>
+            <script>
+                function disableButton(button) {
+                    button.disabled = true;
+                    button.innerHTML = 'Processing...';
+                    button.form.submit();
+                }
+            </script>
         </form>
 
         <p th:if="${param.error}" class="error-message" style="
             display: flex;
             align-items: center;
-            color: #D32F2F; /* Red for error */
-            background-color: #FFEBEE; /* Light red background */
-            border: 1px solid #D32F2F; /* Border matches error color */
+            color: #D32F2F;
+            background-color: #FFEBEE;
+            border: 1px solid #D32F2F;
             padding: 10px 15px;
             border-radius: 8px;
             font-size: 14px;

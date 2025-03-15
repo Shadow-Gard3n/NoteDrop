@@ -1,5 +1,7 @@
 package com.example.NoteDrop.dto;
 
+
+///  no longer important
 public class LoginDTO {
     private String username;
     private String password;

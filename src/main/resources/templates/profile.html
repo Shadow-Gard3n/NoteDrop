@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - NoteDrop</title>
+    <link rel="stylesheet" th:href="@{/css/profileStyle.css}">
+</head>
+<!DOCTYPE html>
+<body>
+<div class="container">
+    <nav class="navbar">
+        <div class="search-container">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="search" placeholder="Search notes..." class="search-input">
+        </div>
+
+        <a th:href="@{'/' + ${#authentication.name} + '/home'}" class="logo">
+            <svg class="notes-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            NoteDrop
+        </a>
+
+        <a th:href="@{'/' + ${#authentication.name} + '/profile'}" class="profile-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+        </a>
+    </nav>
+
+    <main class="profile-content">
+        <div class="profile-header">
+            <div class="profile-cover"></div>
+            <div class="profile-info">
+                <div class="profile-avatar">
+                    <img src="https://cdnb.artstation.com/p/assets/images/images/084/124/297/large/matthew-blank-profile-photo-2.jpg?1737590042" alt="Profile Picture" class="avatar-img">
+                </div>
+                <div class="profile-details">
+                    <h1 class="profile-name" th:text="${username}">Name</h1>
+                    <br>
+<!--                    <p class="profile-bio">BIO</p>-->
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">0</span>
+                            <span class="stat-label">Notes</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">0</span>
+                            <span class="stat-label">Followers</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">0</span>
+                            <span class="stat-label">Following</span>
+                        </div>
+                    </div>
+                </div>
+
+<!--                need to change it to a button-->
+
+                <a href="/login?logout" class="logout-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    Logout
+                </a>
+            </div>
+        </div>
+
+        <div class="profile-tabs">
+            <button class="tab-btn active">Published Notes</button>
+            <button class="tab-btn">Saved Notes</button>
+        </div>
+
+    </main>
+</div>
+</body>
+</html>

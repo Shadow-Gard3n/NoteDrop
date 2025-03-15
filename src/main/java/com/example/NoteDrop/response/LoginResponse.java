@@ -1,5 +1,6 @@
 package com.example.NoteDrop.response;
 
+///  no longer important
 public class LoginResponse {
     String message;
     boolean status;

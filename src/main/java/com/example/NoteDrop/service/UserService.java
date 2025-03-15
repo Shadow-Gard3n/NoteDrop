@@ -7,5 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 public interface UserService {
     void addUser(UserSaveDTO userSaveDTO);
 //    boolean loginUser(String username, String password);
+    boolean userExists(String username);
     UserDetails loadUserByUsername(String username);
 }
