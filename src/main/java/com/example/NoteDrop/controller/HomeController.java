@@ -18,7 +18,6 @@
 //}
 
 package com.example.NoteDrop.controller;
-
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

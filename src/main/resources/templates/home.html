@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang = "en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/homeStyle.css}">
 </head>
 <body>
-<div class="container">
+<div class="app-container">
     <nav class="navbar">
         <div class="search-container">
             <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -21,7 +22,7 @@
 
         <a th:href="@{'/' + ${#authentication.name} + '/profile'}" class="profile-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
-            Profile
+<!--            Profile-->
         </a>
     </nav>
 
@@ -31,24 +32,119 @@
             <p>Upload and share your notes with students worldwide</p>
         </section>
 
-        <section class="upload-section">
+        <div class="upload-container">
             <div class="upload-card">
-                <div class="upload-area" id="dropZone">
-                    <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                    <h2>Share Your Notes</h2>
-                    <p>Drag & drop your files here or</p>
-                    <label for="file-upload" class="upload-btn">Choose Files</label>
-                    <input type="file" id="file-upload" multiple accept=".pdf,.doc,.docx,.txt" hidden>
-                </div>
-                <div class="upload-info">
-                    <h3>Supported Formats</h3>
-                    <p>PDF, DOC, DOCX, TXT</p>
-                    <h3>Max File Size</h3>
-                    <p>50MB per file</p>
-                </div>
+                <form id="uploadForm" class="upload-form">
+                    <div class="upload-area">
+                        <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        <h2>Share Your Notes</h2>
+
+                        <div class="form-fields">
+                            <div class="form-group">
+                                <input
+                                        type="text"
+                                        name="subject"
+                                        placeholder="Subject (e.g., Mathematics)"
+                                        required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <input
+                                        type="text"
+                                        name="topic"
+                                        placeholder="Topic (e.g., Calculus)"
+                                        required
+                                >
+                            </div>
+
+<!--                            need to set limit to 1000 here-->
+                            <div class="form-group">
+                                    <textarea
+                                            name="about"
+                                            placeholder="About this note..."
+                                            required
+                                    ></textarea>
+                            </div>
+
+                            <div class="file-upload">
+                                <input
+                                        type = "file"
+                                        id = "file-upload"
+                                        name = "file"
+                                        accept = ".pdf,.doc,.docx,.txt"
+                                        required
+                                >
+                                <label for="file-upload" class="file-upload-btn">Choose Files</label>
+                                <div id="selected-files" class="selected-files"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="upload-info">
+                        <div class="info-group">
+                            <h3>Supported Formats</h3>
+                            <p>PDF, DOC, DOCX, TXT</p>
+                        </div>
+                        <div class="info-group">
+                            <h3>Max File Size</h3>
+                            <p>50MB per file</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Upload Notes</button>
+                </form>
             </div>
-        </section>
+        </div>
     </main>
 </div>
+
+<script>
+    document.getElementById('file-upload').addEventListener('change', function(e) {
+        const selectedFiles = document.getElementById('selected-files');
+        selectedFiles.innerHTML = '';
+
+        if (this.files.length > 0) {
+            const file = this.files[0];
+
+            const fileItem = document.createElement('div');
+            fileItem.className = 'file-item';
+
+            fileItem.innerHTML = `<span class="file-name">${file.name}</span>
+                              <span class="file-size">${formatFileSize(file.size)}</span>`;
+
+            selectedFiles.appendChild(fileItem);
+        }
+    });
+
+
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    document.getElementById('uploadForm').addEventListener('submit', function(e) {
+        const fileInput = document.getElementById('file-upload');
+
+        if (!fileInput.files.length) {
+            alert('Please select a file to upload.');
+            // e.preventDefault();
+            return;
+        }
+
+        const formData = new FormData(this);
+        console.log('Form submitted:', Object.fromEntries(formData));
+    });
+
+
+
+</script>
 </body>
 </html>

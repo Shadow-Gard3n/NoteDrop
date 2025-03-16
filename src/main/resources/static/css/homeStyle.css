@@ -2,54 +2,50 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f3f4f6;
     min-height: 100vh;
-    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
 }
 
-.container {
+.app-container {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
+/* navbar styles */
 .navbar {
-    background: white;
+    background-color: white;
     padding: 1rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .search-container {
-    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #f3f4f6;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
     width: 300px;
 }
 
 .search-icon {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
     color: #6b7280;
+    margin-right: 0.5rem;
 }
 
 .search-input {
-    width: 100%;
-    padding: 0.75rem 1rem 0.75rem 2.5rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 0.5rem;
+    border: none;
+    background: none;
     outline: none;
-    transition: all 0.3s ease;
-}
-
-.search-input:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    width: 100%;
+    font-size: 0.875rem;
 }
 
 .logo {
@@ -64,33 +60,34 @@ body {
     margin-left: -200px;
 }
 
-
 .logo:hover {
     color: #3b82f6;
 }
 
 .notes-icon {
-    color: #3b82f6;
+    color: #2563eb;
 }
 
 .profile-btn {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
     background-color: #3b82f6;
     color: white;
     border: none;
-    border-radius: 0.5rem;
-    font-weight: 500;
+    border-radius: 50%;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .profile-btn:hover {
-    background-color: #2563eb;
+    background-color: #f3f4f6;
 }
 
+/* Main Content Styles */
 .main-content {
     flex: 1;
     padding: 2rem;
@@ -101,129 +98,222 @@ body {
 
 .welcome-section {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .welcome-section h1 {
     font-size: 2.5rem;
     color: #1f2937;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .welcome-section p {
-    font-size: 1.25rem;
     color: #6b7280;
+    font-size: 1.125rem;
 }
 
-.upload-section {
-    display: flex;
-    justify-content: center;
+.upload-container {
+    max-width: 42rem;
+    margin: 0 auto;
 }
 
 .upload-card {
-    background: white;
-    border-radius: 1rem;
+    background-color: white;
+    border-radius: 0.75rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     padding: 2rem;
-    width: 100%;
-    max-width: 800px;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .upload-area {
-    border: 2px dashed #e5e7eb;
+    border: 2px dashed #d1d5db;
     border-radius: 0.5rem;
     padding: 2rem;
     text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.upload-area:hover {
-    border-color: #3b82f6;
-    background-color: #f8fafc;
 }
 
 .upload-icon {
-    color: #3b82f6;
-    margin-bottom: 1rem;
+    margin: 0 auto;
+    color: #9ca3af;
 }
 
-.upload-area h2 {
-    font-size: 1.5rem;
-    color: #1f2937;
-    margin-bottom: 0.5rem;
+h2 {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #374151;
 }
 
-.upload-area p {
-    color: #6b7280;
-    margin-bottom: 1rem;
+.form-fields {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-.upload-btn {
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.form-group textarea {
+    height: 6rem;
+    resize: none;
+}
+
+.file-upload {
+    margin-top: 0.5rem;
+}
+
+.file-upload input[type="file"] {
+    display: none;
+}
+
+.file-upload-btn {
     display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background-color: #3b82f6;
+    padding: 0.5rem 1.5rem;
+    background-color: #2563eb;
     color: white;
-    border-radius: 0.5rem;
-    font-weight: 500;
+    border-radius: 0.375rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-weight: 500;
+    transition: background-color 0.2s;
 }
 
-.upload-btn:hover {
-    background-color: #2563eb;
+.file-upload-btn:hover {
+    background-color: #1d4ed8;
+}
+
+/* Selected Files Styles */
+.selected-files {
+    margin-top: 1rem;
+    text-align: left;
+}
+
+.file-list {
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.file-item:last-child {
+    border-bottom: none;
+}
+
+.file-name {
+    color: #374151;
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%;
+}
+
+.file-size {
+    color: #6b7280;
+    font-size: 0.75rem;
 }
 
 .upload-info {
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid #e5e7eb;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+    padding: 1rem;
 }
 
-.upload-info h3 {
-    font-size: 1rem;
-    color: #1f2937;
+.info-group {
     margin-bottom: 0.5rem;
 }
 
-.upload-info p {
+.info-group:last-child {
+    margin-bottom: 0;
+}
+
+.info-group h3 {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.25rem;
+}
+
+.info-group p {
+    font-size: 0.875rem;
     color: #6b7280;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+    background-color: #1d4ed8;
 }
 
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        gap: 1rem;
         padding: 1rem;
+        flex-wrap: wrap;
+        gap: 1rem;
     }
 
     .search-container {
-        width: 100%;
-        order: 2;
-    }
-
-    .logo {
-        order: 1;
-    }
-
-    .profile-btn {
         order: 3;
         width: 100%;
-        justify-content: center;
+    }
+
+    .upload-card {
+        padding: 1.5rem;
+    }
+
+    .upload-area {
+        padding: 1.5rem;
     }
 
     .welcome-section h1 {
         font-size: 2rem;
     }
 
-    .welcome-section p {
-        font-size: 1rem;
+    .file-name {
+        max-width: 60%;
     }
+}
 
-    .upload-card {
+@media (max-width: 640px) {
+    .main-content {
         padding: 1rem;
     }
 }
