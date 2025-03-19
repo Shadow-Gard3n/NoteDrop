@@ -8,7 +8,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class UserSaveDTO {
+public class NotesDTO {
+    private int notesid;
     private String username;
-    private String password;
+    private String subject;
+    private String topic;
+    private String about;
+    private String filePath;
 }

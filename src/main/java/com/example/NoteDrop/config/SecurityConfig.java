@@ -19,9 +19,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/signup", "/api/signup", "/api/login", "/css/**", "/js/**")
+                        .requestMatchers("/login", "/signup", "/api/signup", "/api/login","/css/**", "/js/**", "uploads/**")
                         .permitAll()
-                        .requestMatchers("/*/home", "/*/profile").authenticated()
+                ///      correct why /uploads/ is not working
+                        .requestMatchers("/*/home", "/api/notes/save", "/*/profile").authenticated()
                         .anyRequest().denyAll()
                 )
                 .formLogin(form -> form

@@ -27,6 +27,15 @@
     </nav>
 
     <main class="main-content">
+
+        <div th:if="${param.uploadSuccess}">
+            <p class="success-message">✅ Your note has been uploaded successfully!</p>
+        </div>
+
+        <div th:if="${param.uploadFailed}">
+            <p class="error-message">❌ Upload failed. Please try again!</p>
+        </div>
+
         <section class="welcome-section">
             <h1>Share Your Knowledge</h1>
             <p>Upload and share your notes with students worldwide</p>
@@ -34,7 +43,7 @@
 
         <div class="upload-container">
             <div class="upload-card">
-                <form id="uploadForm" class="upload-form">
+                <form th:action="@{/api/notes/save}" method="post" id="uploadForm" class="upload-form" enctype="multipart/form-data">
                     <div class="upload-area">
                         <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -44,6 +53,10 @@
                         <h2>Share Your Notes</h2>
 
                         <div class="form-fields">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+                            <input type="hidden" name="username" th:value="${#authentication.name}">
+
                             <div class="form-group">
                                 <input
                                         type="text"
@@ -96,7 +109,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="submit-btn">Upload Notes</button>
+                    <button type="submit" onclick="validateForm()" class="submit-btn">Upload Notes</button>
                 </form>
             </div>
         </div>
@@ -110,13 +123,11 @@
 
         if (this.files.length > 0) {
             const file = this.files[0];
-
             const fileItem = document.createElement('div');
             fileItem.className = 'file-item';
 
             fileItem.innerHTML = `<span class="file-name">${file.name}</span>
                               <span class="file-size">${formatFileSize(file.size)}</span>`;
-
             selectedFiles.appendChild(fileItem);
         }
     });
@@ -130,19 +141,46 @@
         return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
     }
 
-    document.getElementById('uploadForm').addEventListener('submit', function(e) {
+    // document.getElementById('uploadForm').addEventListener('submit', function(e) {
+    //     const fileInput = document.getElementById('file-upload');
+    //
+    //     // if (!fileInput.files.length) {
+    //     //     alert('Please select a file to upload.');
+    //     //     // e.preventDefault();
+    //     //     return;
+    //     // }
+    //
+    //     const formData = new FormData(this);
+    //     console.log('Form submitted:', Object.fromEntries(formData));
+    // });
+
+    function validateForm() {
         const fileInput = document.getElementById('file-upload');
+        const form = document.getElementById('upload-form');
 
         if (!fileInput.files.length) {
-            alert('Please select a file to upload.');
-            // e.preventDefault();
-            return;
+            alert('Please upload a file.');
+            return false;
         }
 
-        const formData = new FormData(this);
-        console.log('Form submitted:', Object.fromEntries(formData));
-    });
+        if (!form.checkValidity()) {
+            alert('Please fill out all required fields.');
+            return false;
+        }
+        document.querySelector('form').submit();
+    }
 
+    setTimeout(() => {
+        const successMessage = document.querySelector('.success-message');
+        const errorMessage = document.querySelector('.error-message');
+
+        if (successMessage) {
+            successMessage.style.display = 'none';
+        }
+        if (errorMessage) {
+            errorMessage.style.display = 'none';
+        }
+    }, 3000);
 
 
 </script>

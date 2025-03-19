@@ -1,6 +1,5 @@
 package com.example.NoteDrop.entity;
 
-
 import jakarta.persistence.*;
 
 @Entity
@@ -31,6 +30,14 @@ public class Notes {
 
     public Notes(int notesid, String username, String subject, String topic, String about, String filePath) {
         this.notesid = notesid;
+        this.username = username;
+        this.subject = subject;
+        this.topic = topic;
+        this.about = about;
+        this.filePath = filePath;
+    }
+
+    public Notes(String username, String subject, String topic, String about, String filePath) {
         this.username = username;
         this.subject = subject;
         this.topic = topic;

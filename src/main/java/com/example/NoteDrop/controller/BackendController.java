@@ -1,23 +1,37 @@
 package com.example.NoteDrop.controller;
 
+import com.example.NoteDrop.dto.NotesSaveDTO;
 import com.example.NoteDrop.dto.UserSaveDTO;
+import com.example.NoteDrop.entity.Notes;
+import com.example.NoteDrop.service.NotesService;
 import com.example.NoteDrop.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 @Controller
 @CrossOrigin
 @RequestMapping("/api")
-public class LoginBackendController {
+public class BackendController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private NotesService notesService;
 
     @PostMapping("/signup")
     public String saveUser(@ModelAttribute UserSaveDTO userSaveDTO, Model model) {
@@ -27,6 +41,29 @@ public class LoginBackendController {
         }
         userService.addUser(userSaveDTO);
         return "redirect:/login";
+    }
+
+    @PostMapping("/notes/save")
+    public String saveNote(@RequestParam("username") String username,
+                                           @RequestParam("subject") String subject,
+                                           @RequestParam("topic") String topic,
+                                           @RequestParam("about") String about,
+                                           @RequestParam("file") MultipartFile file
+    ) {
+        Path uploadPath = Paths.get("src/main/resources/static/uploads/");
+        String fileName = file.getOriginalFilename();
+        Path filePath = uploadPath.resolve(fileName);
+        try {
+            byte[] fileBytes = file.getBytes();
+            Files.write(filePath, fileBytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "redirect:/" + username + "/home?error=uploadFailed";        }
+
+        NotesSaveDTO notesSaveDTO = new NotesSaveDTO(username, subject, topic, about, filePath.toString());
+        notesService.addNotes(notesSaveDTO);
+
+        return "redirect:/" + username + "/home?uploadSuccess";
     }
 
 
