@@ -12,7 +12,7 @@
     <nav class="navbar">
         <div class="search-container">
             <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-            <input type="search" placeholder="Search notes..." class="search-input">
+            <input type="search" id="search-input" placeholder="Search notes..." class="search-input">
         </div>
 
         <a th:href="@{'/' + ${#authentication.name} + '/home'}" class="logo">
@@ -32,9 +32,19 @@
             <p class="success-message">✅ Your note has been uploaded successfully!</p>
         </div>
 
-        <div th:if="${param.uploadFailed}">
-            <p class="error-message">❌ Upload failed. Please try again!</p>
+        <div th:if="${param.error}">
+            <p class="error-message">
+                ❌
+                <span th:if="${param.error[0] == 'uploadFailed'}">Upload failed. Please try again!</span>
+                <span th:if="${param.error[0] == 'emptyFile'}">Empty file not allowed!</span>
+                <span th:if="${param.error[0] == 'usernameTooLong'}">Username is too long. Max 100 characters allowed.</span>
+                <span th:if="${param.error[0] == 'subjectTooLong'}">Subject is too long. Max 60 characters allowed.</span>
+                <span th:if="${param.error[0] == 'topicTooLong'}">Topic is too long. Max 60 characters allowed.</span>
+                <span th:if="${param.error[0] == 'aboutTooLong'}">Description is too long. Max 1000 characters allowed.</span>
+            </p>
         </div>
+
+
 
         <section class="welcome-section">
             <h1>Share Your Knowledge</h1>
@@ -56,7 +66,6 @@
                             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
                             <input type="hidden" name="username" th:value="${#authentication.name}">
-
                             <div class="form-group">
                                 <input
                                         type="text"
@@ -167,7 +176,7 @@
             alert('Please fill out all required fields.');
             return false;
         }
-        document.querySelector('form').submit();
+        document.querySelector('uploadForm').submit();
     }
 
     setTimeout(() => {
@@ -181,6 +190,16 @@
             errorMessage.style.display = 'none';
         }
     }, 3000);
+
+    document.getElementById("search-input").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            const query = encodeURIComponent(this.value.trim()); // encode query string
+            if (query) {
+                window.location.href = "/[[${#authentication.name}]]/search?query=" + query;
+            }
+        }
+    });
 
 
 </script>

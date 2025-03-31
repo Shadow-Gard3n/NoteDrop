@@ -19,10 +19,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/signup", "/api/signup", "/api/login","/css/**", "/js/**", "uploads/**")
+                        .requestMatchers("/login", "/signup", "/api/signup", "/api/login","/css/**", "/js/**", "/uploads/**")
                         .permitAll()
                 ///      correct why /uploads/ is not working
-                        .requestMatchers("/*/home", "/api/notes/save", "/*/profile").authenticated()
+                        .requestMatchers("/*/home", "/api/notes/save", "/*/profile", "/*/search").authenticated()
                         .anyRequest().denyAll()
                 )
                 .formLogin(form -> form
@@ -39,8 +39,6 @@ public class SecurityConfig {
 
         return http.build();
     }
-
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {
