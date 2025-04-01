@@ -17,55 +17,36 @@ body {
 
 /* Navigation */
 .navbar {
-    background-color: #ffffff;
-    border-bottom: 1px solid #f3f4f6;
-    padding: 1rem 0;
-}
-
-.nav-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
+    background-color: white;
+    padding: 1rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Search bar */
-.search-wrapper {
-    position: relative;
-    width: 400px;
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: #f3f4f6;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    width: 300px;
+}
+
+.search-icon {
+    color: #6b7280;
+    margin-right: 0.5rem;
 }
 
 .search-input {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    padding-right: 3rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    font-size: 1rem;
-    outline: none;
-    transition: all 0.2s;
-}
-
-.search-input:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
-}
-
-.search-button {
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
     border: none;
-    color: #6b7280;
-    cursor: pointer;
-    padding: 0.25rem;
+    background: none;
+    outline: none;
+    width: 100%;
+    font-size: 0.875rem;
 }
 
-/* Logo */
 .logo {
     display: flex;
     align-items: center;
@@ -75,26 +56,17 @@ body {
     color: #1f2937;
     text-decoration: none;
     transition: color 0.3s ease;
-    margin-left: -250px;
+    margin-left: -200px;
 }
 
 .logo:hover {
     color: #3b82f6;
 }
 
-.no-results p {
-    font-style: italic;
-    color: #666;
-    text-align: center;
-    margin-top: 20px;
-    font-size: 1.1em;
-}
-
 .notes-icon {
-    color: #3b82f6;
+    color: #2563eb;
 }
 
-/* Profile button */
 .profile-btn {
     display: flex;
     align-items: center;
@@ -110,17 +82,9 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.profile-btn svg {
-    width: 1.25rem;
-    height: 1.25rem;
-}
-
 .profile-btn:hover {
-    background-color: #2563eb;
-    transform: scale(1.05);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f3f4f6;
 }
-
 
 /* Main content */
 .main-content {
@@ -171,11 +135,12 @@ body {
 
 .subject {
     color: #3b82f6;
-    font-size: 0.875rem;
+    font-size: 1rem;
 }
 
+/*need to correct the sizes*/
 .topic {
-    font-size: 12.5rem;
+    font-size: 1.75rem;
     font-weight: 600;
     color: #111827;
 }

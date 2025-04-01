@@ -32,4 +32,9 @@ public class NotesServiceIMPL implements NotesService {
     public List<Notes> searchNotes(String query) {
         return notesRepo.searchNotes(query);
     }
+
+    @Override
+    public List<Notes> notesByUsername(String username) {
+        return notesRepo.findByUsername(username);
+    }
 }

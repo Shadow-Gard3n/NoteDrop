@@ -3,6 +3,8 @@ package com.example.NoteDrop.entity;
 
 import jakarta.persistence.*;
 
+///  maybe need to add notecount followers following
+/// somehow need to store the data of saved notes (maybe need to try using notesid)
 @Entity
 @Table(name = "user")
 public class User {

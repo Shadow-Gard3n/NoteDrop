@@ -2,6 +2,7 @@ package com.example.NoteDrop.entity;
 
 import jakarta.persistence.*;
 
+
 @Entity
 @Table(name = "Notes")
 public class Notes {

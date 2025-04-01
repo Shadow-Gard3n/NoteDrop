@@ -8,4 +8,5 @@ import java.util.List;
 public interface NotesService {
     void addNotes(NotesSaveDTO notesSaveDTO);
     List<Notes> searchNotes(String query);
+    List<Notes> notesByUsername(String username);
 }

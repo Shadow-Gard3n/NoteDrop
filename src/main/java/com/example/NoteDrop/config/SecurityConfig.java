@@ -19,10 +19,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/signup", "/api/signup", "/api/login","/css/**", "/js/**", "/uploads/**")
+                        .requestMatchers("/login", "/signup", "/api/signup", "/api/login","/css/**", "/js/**", "/uploads/**", "/error")
                         .permitAll()
-                ///      correct why /uploads/ is not working
-                        .requestMatchers("/*/home", "/api/notes/save", "/*/profile", "/*/search").authenticated()
+                ///      correct why /uploads/ is not working perfectly for some files
+                        .requestMatchers("/*/home", "/api/notes/save", "/*/profile", "/*/search", "/logout").authenticated()
                         .anyRequest().denyAll()
                 )
                 .formLogin(form -> form
@@ -32,10 +32,13 @@ public class SecurityConfig {
                         .permitAll()
                 )
                 .logout(logout -> logout
-                        ///  need to correct logout logic
-                        .logoutSuccessUrl("/login?logout")
+//                        .logoutUrl("/logout") // Define the logout URL
+                        .logoutSuccessUrl("/login?logout") // Redirect after logout
+//                        .invalidateHttpSession(true) // Invalidate session
+//                        .deleteCookies("JSESSIONID") // Delete session cookie
                         .permitAll()
                 );
+
 
         return http.build();
     }

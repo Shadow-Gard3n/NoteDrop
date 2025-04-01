@@ -1,72 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>NoteDrop - Search Results</title>-->
-<!--    <link rel="stylesheet" th:href="@{/css/searchStyle.css}">-->
-<!--</head>-->
-<!--<body>-->
-<!--<div class="container">-->
-<!--    &lt;!&ndash; Navigation Bar &ndash;&gt;-->
-<!--    <nav class="navbar">-->
-<!--        <div class="nav-content">-->
-<!--            <div class="search-wrapper">-->
-<!--                <input type="search" id="search-input" placeholder="Search notes..." class="search-input">-->
-<!--                <button class="search-button">-->
-<!--                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>-->
-<!--                </button>-->
-<!--            </div>-->
-
-<!--            <a th:href="@{'/' + ${#authentication.name} + '/home'}" class="logo">-->
-<!--                <svg class="notes-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>-->
-<!--                <span>NoteDrop</span>-->
-<!--            </a>-->
-
-<!--            <a th:href="@{'/' + ${#authentication.name} + '/profile'}" class="profile-btn">-->
-<!--                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>-->
-<!--            </a>-->
-<!--        </div>-->
-<!--    </nav>-->
-
-<!--    &lt;!&ndash; Main Content &ndash;&gt;-->
-<!--    <main class="main-content">-->
-<!--        <h1 class="results-title">Search Results</h1>-->
-
-<!--        <div class="results-grid">-->
-<!--            &lt;!&ndash; Result Card 1 &ndash;&gt;-->
-<!--            <div class="result-card">-->
-<!--                <div class="user-info">-->
-<!--                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>-->
-<!--                    <span>john_doe</span>-->
-<!--                </div>-->
-<!--                <h2 class="subject">Computer Science</h2>-->
-<!--                <div class="topic">Data Structures</div>-->
-<!--                <p class="description">-->
-<!--                    Comprehensive notes covering arrays, linked lists, trees, and graphs with examples.-->
-<!--                </p>-->
-<!--                <button class="download-btn">-->
-<!--                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>-->
-<!--                    Download Notes-->
-<!--                </button>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </main>-->
-<!--    <script>-->
-<!--        document.getElementById("search-input").addEventListener("keypress", function(event) {-->
-<!--            if (event.key === "Enter") {-->
-<!--                event.preventDefault();-->
-<!--                const query = encodeURIComponent(this.value.trim()); // encode query string-->
-<!--                if (query) {-->
-<!--                    window.location.href = "/[[${#authentication.name}]]/search?query=" + query;-->
-<!--                }-->
-<!--            }-->
-<!--        });-->
-<!--    </script>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
-
 <!DOCTYPE html>
 <html lang = "en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -79,28 +10,25 @@
 <div class="container">
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <div class="nav-content">
-            <div class="search-wrapper">
-                <input type="search" id="search-input" placeholder="Search notes..." class="search-input" th:value="${query}">
-                <button class="search-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                </button>
-            </div>
-
-            <a th:href="@{'/' + ${#authentication.name} + '/home'}" class="logo">
-                <svg class="notes-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                <span>NoteDrop</span>
-            </a>
-
-            <a th:href="@{'/' + ${#authentication.name} + '/profile'}" class="profile-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
-            </a>
+        <div class="search-container">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="search" id="search-input" placeholder="Search notes..." class="search-input">
         </div>
+
+        <a th:href="@{'/' + ${#authentication.name} + '/home'}" class="logo">
+            <svg class="notes-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            NoteDrop
+        </a>
+
+        <a th:href="@{'/' + ${#authentication.name} + '/profile'}" class="profile-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+            <!--            Profile-->
+        </a>
     </nav>
 
     <!-- Main Content -->
     <main class="main-content">
-        <h1 class="results-title">Search Results for: [[${query}]]</h1>
+        <h1 class="results-title">Search Results for: <i>[[${query}]]</i></h1>
 
         <div class="results-grid">
             <div th:each="note : ${Results}" class="result-card">

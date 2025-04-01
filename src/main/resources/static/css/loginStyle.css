@@ -150,3 +150,16 @@ body {
 .signup-link a:hover {
     color: #2563eb;
 }
+
+.error-message{
+    display: flex;
+    align-items: center;
+    color: #D32F2F;
+    background-color: #FFEBEE;
+    border: 1px solid #D32F2F;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-top: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

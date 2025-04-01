@@ -1,15 +1,12 @@
-
-
 package com.example.NoteDrop.controller;
+
 import com.example.NoteDrop.entity.Notes;
 import com.example.NoteDrop.service.NotesService;
-import com.example.NoteDrop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @Controller
@@ -38,7 +35,8 @@ public class HomeController {
         if (!authentication.getName().equals(username)) {
             return "redirect:/" + authentication.getName() + "/profile";
         }
-        model.addAttribute("username", username);
+        List<Notes> userNotes = notesService.notesByUsername(username);
+        model.addAttribute("userNotes", userNotes);
         return "profile";
     }
 

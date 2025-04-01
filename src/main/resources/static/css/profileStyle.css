@@ -17,42 +17,34 @@ body {
 }
 
 .navbar {
-    background: white;
+    background-color: white;
     padding: 1rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .search-container {
-    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #f3f4f6;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
     width: 300px;
 }
 
 .search-icon {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
     color: #6b7280;
+    margin-right: 0.5rem;
 }
 
 .search-input {
-    width: 100%;
-    padding: 0.75rem 1rem 0.75rem 2.5rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 0.5rem;
+    border: none;
+    background: none;
     outline: none;
-    transition: all 0.3s ease;
-}
-
-.search-input:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    width: 100%;
+    font-size: 0.875rem;
 }
 
 .logo {
@@ -72,7 +64,7 @@ body {
 }
 
 .notes-icon {
-    color: #3b82f6;
+    color: #2563eb;
 }
 
 .profile-btn {
@@ -90,16 +82,10 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.profile-btn svg {
-    width: 1.25rem;
-    height: 1.25rem;
+.profile-btn:hover {
+    background-color: #f3f4f6;
 }
 
-.profile-btn:hover {
-    background-color: #2563eb;
-    transform: scale(1.05);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
 
 /* Profile Page Styles */
 .profile-content {
@@ -180,6 +166,10 @@ body {
     font-size: 0.875rem;
 }
 
+.logout-form {
+    display: inline-block; /* To make it behave like an inline element */
+}
+
 .logout-btn {
     display: flex;
     align-items: center;
@@ -190,13 +180,16 @@ body {
     border: none;
     border-radius: 0.5rem;
     font-weight: 500;
-    text-decoration: none;
+    cursor: pointer; /* Change cursor to pointer for better UX */
     transition: all 0.3s ease;
-    margin-top: 0.5rem;
 }
 
 .logout-btn:hover {
     background-color: #dc2626;
+}
+
+.logout-btn:focus {
+    outline: none; /* Optional: Remove the outline after focus */
 }
 
 .profile-tabs {
@@ -288,6 +281,78 @@ body {
     display: flex;
     gap: 1rem;
 }
+
+/*saved notes*/
+.result-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: hidden; /* Prevents content from overflowing */
+    max-width: 100%; /* Prevents it from exceeding its container */
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.subject, .topic, .description {
+    word-break: break-word; /* Handles long words */
+    white-space: normal; /* Ensures normal text wrapping */
+}
+
+.subject {
+    color: #3b82f6;
+    font-size: 1rem;
+}
+
+/*need to correct the sizes*/
+.topic {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.description {
+    color: #6b7280;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    overflow: hidden; /* Hide overflow content */
+    text-overflow: ellipsis; /* Show "..." if text is too long */
+}
+.download-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #3b82f6;
+    color: white;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none; /* Ensure no underline */
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.download-btn:hover {
+    background-color: #2563eb;
+    color: white;
+}
+
+.download-btn:hover {
+    background-color: #2563eb;
+}
+
 
 @media (max-width: 768px) {
     .navbar {

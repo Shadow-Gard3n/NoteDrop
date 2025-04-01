@@ -16,6 +16,16 @@
 
         <!-- Login Form -->
         <form th:action="@{/api/login}" method="post" class="login-form">
+
+            <p th:if="${param.error}" class="error-message">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px;">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+                Invalid username or password. Please try again!
+            </p>
+
             <div class="input-group">
                 <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="8" r="5"/>
@@ -47,28 +57,6 @@
                 }
             </script>
         </form>
-
-        <p th:if="${param.error}" class="error-message" style="
-            display: flex;
-            align-items: center;
-            color: #D32F2F;
-            background-color: #FFEBEE;
-            border: 1px solid #D32F2F;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-top: 15px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        ">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px;">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="12" y1="8" x2="12" y2="12"/>
-                <line x1="12" y1="16" x2="12.01" y2="16"/>
-            </svg>
-            Invalid username or password. Please try again!
-        </p>
-
-
 
         <p class="signup-link">
             Don't have an account? <a href="/signup">Sign up</a>

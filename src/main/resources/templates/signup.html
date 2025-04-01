@@ -16,24 +16,13 @@
         </div>
 
         <form th:action="@{/api/signup}" method="post" class="login-form">
-            <p th:if="${error}" class="error-message" style="
-            display: flex;
-            align-items: center;
-            color: #D32F2F;
-            background-color: #FFEBEE;
-            border: 1px solid #D32F2F;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-top: 15px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        ">
+            <p th:if="${error}" class="error-message">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px;">
                     <circle cx="12" cy="12" r="10"/>
                     <line x1="12" y1="8" x2="12" y2="12"/>
                     <line x1="12" y1="16" x2="12.01" y2="16"/>
                 </svg>
-                <span th:text="${error}">Invalid input. Please try again!</span>
+                <span th:text="${error}"></span>
             </p>
 
 
@@ -47,7 +36,6 @@
                 <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                 <input type="password" name="password" placeholder="Password" required>
             </div>
-
 
             <button type="submit" class="login-button" onclick="disableButton(this)">
                 Create Account

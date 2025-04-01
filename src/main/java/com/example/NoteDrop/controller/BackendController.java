@@ -2,18 +2,10 @@ package com.example.NoteDrop.controller;
 
 import com.example.NoteDrop.dto.NotesSaveDTO;
 import com.example.NoteDrop.dto.UserSaveDTO;
-import com.example.NoteDrop.entity.Notes;
 import com.example.NoteDrop.service.NotesService;
 import com.example.NoteDrop.service.UserService;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -36,10 +28,18 @@ public class BackendController {
 
     @PostMapping("/signup")
     public String saveUser(@ModelAttribute UserSaveDTO userSaveDTO, RedirectAttributes redirectAttributes) {
-        if (userSaveDTO.getUsername() == null || userSaveDTO.getUsername().trim().isEmpty() || userSaveDTO.getPassword() == null || userSaveDTO.getPassword().trim().isEmpty()) {
-            redirectAttributes.addFlashAttribute("error", "Username and password cannot be empty!");
+        String username = userSaveDTO.getUsername();
+
+        if (username == null || username.trim().isEmpty() || !username.matches("^[a-zA-Z0-9_@]+$")) {
+            redirectAttributes.addFlashAttribute("error", "Invalid username! Only letters, numbers, underscore and @ are allowed.");
             return "redirect:/signup";
         }
+
+        if (userSaveDTO.getPassword().trim().isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Password cannot be empty!");
+            return "redirect:/signup";
+        }
+
         if (userService.userExists(userSaveDTO.getUsername())) {
             redirectAttributes.addFlashAttribute("error", "Username already exists. Try another.");
             return "redirect:/signup";
