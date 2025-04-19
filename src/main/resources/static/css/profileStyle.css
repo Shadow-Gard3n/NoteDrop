@@ -293,8 +293,9 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    overflow: hidden; /* Prevents content from overflowing */
-    max-width: 100%; /* Prevents it from exceeding its container */
+    overflow: hidden; /* prevents content from overflowing */
+    margin-bottom: 10px;
+    max-width: 100%; /* prevents it from exceeding its container */
 }
 
 .user-info {

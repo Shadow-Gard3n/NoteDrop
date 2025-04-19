@@ -16,6 +16,6 @@ public interface NotesRepo extends JpaRepository<Notes, Integer> {
             "OR LOWER(n.topic) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
             "OR LOWER(n.about) LIKE LOWER(CONCAT('%', :keyword, '%'))")
     List<Notes> searchNotes(@Param("keyword") String keyword);
-
+    List<Notes> findByNotesidIn(List<Integer> notesIds);
     List<Notes> findByUsername(String username);
 }

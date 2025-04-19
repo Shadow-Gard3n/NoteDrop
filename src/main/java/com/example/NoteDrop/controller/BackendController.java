@@ -1,6 +1,7 @@
 package com.example.NoteDrop.controller;
 
 import com.example.NoteDrop.dto.NotesSaveDTO;
+import com.example.NoteDrop.dto.SaveNotesDTO;
 import com.example.NoteDrop.dto.UserSaveDTO;
 import com.example.NoteDrop.service.NotesService;
 import com.example.NoteDrop.service.UserService;
@@ -103,7 +104,21 @@ public class BackendController {
         }
     }
 
-
+    @PostMapping("/savePDF")
+    @ResponseBody
+    public ResponseEntity<String> savePDF(@RequestParam String username, @RequestParam int pdfId) {
+        boolean saved = notesService.saveNoteForUser(username, pdfId);
+        try {
+            if (saved) {
+                return ResponseEntity.ok("Saved successfully!");
+            } else {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Already saved!");
+            }
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred.");
+        }
+    }
 
 //    @PostMapping("/login")
 //    public String loginUser(@RequestParam String username,

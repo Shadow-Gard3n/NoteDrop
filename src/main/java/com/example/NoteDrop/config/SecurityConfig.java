@@ -22,7 +22,7 @@ public class SecurityConfig {
                         .requestMatchers("/login", "/signup", "/api/signup", "/api/login","/css/**", "/js/**", "/uploads/**", "/error")
                         .permitAll()
                 ///      correct why /uploads/ is not working perfectly for some files
-                        .requestMatchers("/*/home", "/api/notes/save","/api/follow", "/*/profile", "/*/search", "/logout").authenticated()
+                        .requestMatchers("/*/home", "/api/notes/save","/api/follow","/api/savePDF", "/*/profile", "/*/search", "/logout").authenticated()
                         .anyRequest().denyAll()
                 )
                 .formLogin(form -> form

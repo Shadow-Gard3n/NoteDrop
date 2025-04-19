@@ -1,7 +1,10 @@
 package com.example.NoteDrop.controller;
 
 import com.example.NoteDrop.entity.Notes;
+import com.example.NoteDrop.entity.SavedNotes;
 import com.example.NoteDrop.repo.FollowRepo;
+import com.example.NoteDrop.repo.NotesRepo;
+import com.example.NoteDrop.repo.SavedNotesRepo;
 import com.example.NoteDrop.service.NotesService;
 import com.example.NoteDrop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @CrossOrigin
@@ -20,10 +24,16 @@ public class HomeController {
     private NotesService notesService;
 
     @Autowired
+    private NotesRepo notesRepo;
+
+    @Autowired
     private UserService userService;
 
     @Autowired
     private FollowRepo followRepo;
+
+    @Autowired
+    private SavedNotesRepo savedNotesRepo;
 
     @GetMapping("/home")
     public String home(@PathVariable String username,
@@ -45,11 +55,18 @@ public class HomeController {
         }
         List<Notes> userNotes = notesService.notesByUsername(username);
 
+
+        List<SavedNotes> savedNotes = savedNotesRepo.findByUsername(username);
+        List<Integer> notesIds = savedNotes.stream()
+                .map(SavedNotes::getPdfId)
+                .toList();
+        List<Notes> savedNotesEntities = notesRepo.findByNotesidIn(notesIds);
+
         int followersCount = followRepo.findFollowersUsernamesByUsername(username).size();
         int followingCount = followRepo.findFollowedUsernamesByUsername(username).size();
         model.addAttribute("followersCount", followersCount);
         model.addAttribute("followingCount", followingCount);
-
+        model.addAttribute("savedNotes",savedNotesEntities);  /// just for testing need to correct
         model.addAttribute("notesCount", userNotes.size());
         model.addAttribute("userNotes", userNotes);
         return "profile";
@@ -65,7 +82,9 @@ public class HomeController {
         }
         List<Notes> Results = notesService.searchNotes(query);
         List<String> followedUsernames = userService.getFollowedUsernames(authentication.getName());
+        List<SavedNotes> savedNotes = savedNotesRepo.findByUsername(authentication.getName());
 
+        model.addAttribute("savedNotes", savedNotes);
         model.addAttribute("followedUsernames", followedUsernames);
         model.addAttribute("Results", Results);
         model.addAttribute("query", query);

@@ -87,6 +87,26 @@
             </div>
         </div>
 
+        <!-- Saved Notes Grid -->
+        <div class="results-grid" id="saved-notes" style="display:none;">
+            <div th:each="savedNote : ${savedNotes}" class="result-card">
+                <div class="user-info">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+                    <span th:text="${savedNote.username}">Username</span>
+                </div>
+                <h2 class="topic" th:text="${savedNote.topic}">Topic</h2>
+                <div class="subject" th:text="${savedNote.subject}">Subject</div>
+                <p class="description" th:text="${savedNote.about}">Description</p>
+                <a th:href="@{${savedNote.filePath}}" target="_blank" class="download-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                    </svg>
+                    Download Notes
+                </a>
+            </div>
+        </div>
+
     </main>
     <script>
 

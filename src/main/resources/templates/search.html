@@ -53,7 +53,13 @@
                                 disabled
                                 th:if="${#lists.contains(followedUsernames, note.username)}">Following ✓</button>
 
-                        <button class="save-btn">Save</button>
+                        <button class="saving-btn"
+                                th:attr="data_username=${#authentication.name}, notes_id=${note.notesid}"
+                                th:if="${not #lists.contains(savedNotes, note)}">Save</button>
+
+                        <button class="saving-btn"
+                                disabled
+                                th:if="${#lists.contains(savedNotes, note)}">Saved ✓</button>
                     </div>
                 </div>
 
@@ -122,6 +128,47 @@
                 });
             });
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const saveButtons = document.querySelectorAll(".saving-btn");
+
+            const token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+            const header = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+            saveButtons.forEach(button => {
+                button.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const dataUsername = this.getAttribute("data_username");
+                    const pdfId = this.getAttribute("notes_id");
+
+                    fetch("/api/savePDF", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                            [header]: token
+                        },
+                        body: new URLSearchParams({
+                            username: dataUsername,
+                            pdfId: pdfId
+                        })
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                this.textContent = "Saved ✓";
+                                this.disabled = true;
+                            } else {
+                                alert("Failed to save note.");
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Error:", error);
+                            alert("An error occurred while saving.");
+                        });
+                });
+            });
+        });
+
+
     </script>
 </div>
 </body>

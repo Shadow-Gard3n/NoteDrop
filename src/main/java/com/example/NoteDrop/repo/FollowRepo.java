@@ -11,6 +11,7 @@ import java.util.List;
 public interface FollowRepo extends JpaRepository<Follow, Integer> {
     boolean existsByFollowerAndFollowed(User follower, User followed);
 
+    ///  can be made simpler but for later
     @Query("SELECT f.followed.username FROM Follow f WHERE f.follower = :follower")
     List<String> findFollowedUsernamesByFollower(@Param("follower") User follower);
 

@@ -216,7 +216,7 @@ body {
 }
 
 .follow-btn,
-.save-btn {
+.saving-btn {
     padding: 6px 12px;
     align-items: center;
     border: none;
@@ -239,12 +239,12 @@ body {
     transform: scale(1.05);
 }
 
-.save-btn {
+.saving-btn {
     background-color: #28a745;
     color: white;
 }
 
-.save-btn:hover {
+.saving-btn:hover {
     background-color: #1e7e34;
     transform: scale(1.05);
 }
