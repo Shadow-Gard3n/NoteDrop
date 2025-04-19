@@ -56,7 +56,7 @@ body {
     color: #1f2937;
     text-decoration: none;
     transition: color 0.3s ease;
-    margin-left: -200px;
+    margin-left: -225px;
 }
 
 .logo:hover {
@@ -120,13 +120,26 @@ body {
     max-width: 100%; /* Prevents it from exceeding its container */
 }
 
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #6b7280;
-    font-size: 0.875rem;
+.noteUsername {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 100%;
+    font-size: 14px;
+    color: #555;
 }
+
+/*.noteUsername {*/
+/*    max-width: 150px;        !* Or however much space you want *!*/
+/*    white-space: nowrap;*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*    display: inline-block;*/
+/*    vertical-align: middle;*/
+/*    font-size: 14px;*/
+/*    color: #555;*/
+/*}*/
 
 .subject, .topic, .description {
     word-break: break-word; /* Handles long words */
@@ -167,6 +180,7 @@ body {
     text-decoration: none; /* Ensure no underline */
     cursor: pointer;
     transition: background-color 0.2s;
+    margin-top: auto;
 }
 
 .download-btn:hover {
@@ -174,9 +188,68 @@ body {
     color: white;
 }
 
-.download-btn:hover {
-    background-color: #2563eb;
+
+.user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+
 }
+
+
+.left-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    overflow: hidden;
+    max-width: 100%;
+    flex: 1; /* allows it to shrink when needed */
+}
+
+.right-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0; /* NEVER shrink these */
+}
+
+.follow-btn,
+.save-btn {
+    padding: 6px 12px;
+    align-items: center;
+    border: none;
+    gap: 6px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+
+.follow-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.follow-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.save-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.save-btn:hover {
+    background-color: #1e7e34;
+    transform: scale(1.05);
+}
+
+
 
 /* Responsive design */
 @media (max-width: 768px) {

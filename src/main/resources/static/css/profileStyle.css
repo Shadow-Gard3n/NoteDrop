@@ -180,8 +180,10 @@ body {
     border: none;
     border-radius: 0.5rem;
     font-weight: 500;
-    cursor: pointer; /* Change cursor to pointer for better UX */
+    text-decoration: none;
+    /*cursor: pointer; !* Change cursor to pointer for better UX *!*/
     transition: all 0.3s ease;
+    margin-top: 0.5rem;
 }
 
 .logout-btn:hover {
@@ -189,7 +191,7 @@ body {
 }
 
 .logout-btn:focus {
-    outline: none; /* Optional: Remove the outline after focus */
+    outline: none; /* remove the outline after focus */
 }
 
 .profile-tabs {

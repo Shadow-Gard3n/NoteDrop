@@ -1,7 +1,9 @@
 package com.example.NoteDrop.controller;
 
 import com.example.NoteDrop.entity.Notes;
+import com.example.NoteDrop.repo.FollowRepo;
 import com.example.NoteDrop.service.NotesService;
+import com.example.NoteDrop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,12 @@ public class HomeController {
 
     @Autowired
     private NotesService notesService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private FollowRepo followRepo;
 
     @GetMapping("/home")
     public String home(@PathVariable String username,
@@ -36,6 +44,13 @@ public class HomeController {
             return "redirect:/" + authentication.getName() + "/profile";
         }
         List<Notes> userNotes = notesService.notesByUsername(username);
+
+        int followersCount = followRepo.findFollowersUsernamesByUsername(username).size();
+        int followingCount = followRepo.findFollowedUsernamesByUsername(username).size();
+        model.addAttribute("followersCount", followersCount);
+        model.addAttribute("followingCount", followingCount);
+
+        model.addAttribute("notesCount", userNotes.size());
         model.addAttribute("userNotes", userNotes);
         return "profile";
     }
@@ -49,6 +64,9 @@ public class HomeController {
             return "redirect:/" + authentication.getName() + "/profile";
         }
         List<Notes> Results = notesService.searchNotes(query);
+        List<String> followedUsernames = userService.getFollowedUsernames(authentication.getName());
+
+        model.addAttribute("followedUsernames", followedUsernames);
         model.addAttribute("Results", Results);
         model.addAttribute("query", query);
         model.addAttribute("username", username);

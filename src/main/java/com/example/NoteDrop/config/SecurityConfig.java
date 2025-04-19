@@ -22,7 +22,7 @@ public class SecurityConfig {
                         .requestMatchers("/login", "/signup", "/api/signup", "/api/login","/css/**", "/js/**", "/uploads/**", "/error")
                         .permitAll()
                 ///      correct why /uploads/ is not working perfectly for some files
-                        .requestMatchers("/*/home", "/api/notes/save", "/*/profile", "/*/search", "/logout").authenticated()
+                        .requestMatchers("/*/home", "/api/notes/save","/api/follow", "/*/profile", "/*/search", "/logout").authenticated()
                         .anyRequest().denyAll()
                 )
                 .formLogin(form -> form
@@ -32,10 +32,10 @@ public class SecurityConfig {
                         .permitAll()
                 )
                 .logout(logout -> logout
-//                        .logoutUrl("/logout") // Define the logout URL
-                        .logoutSuccessUrl("/login?logout") // Redirect after logout
-//                        .invalidateHttpSession(true) // Invalidate session
-//                        .deleteCookies("JSESSIONID") // Delete session cookie
+//                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login?logout") // redirect after logout
+//                        .invalidateHttpSession(true)
+//                        .deleteCookies("JSESSIONID")
                         .permitAll()
                 );
 

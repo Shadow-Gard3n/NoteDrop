@@ -37,4 +37,5 @@ public class NotesServiceIMPL implements NotesService {
     public List<Notes> notesByUsername(String username) {
         return notesRepo.findByUsername(username);
     }
+
 }

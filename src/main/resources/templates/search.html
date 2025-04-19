@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoteDrop - Search Results</title>
     <link rel="stylesheet" th:href="@{/css/searchStyle.css}">
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
 </head>
 <body>
 <div class="container">
@@ -33,9 +35,28 @@
         <div class="results-grid">
             <div th:each="note : ${Results}" class="result-card">
                 <div class="user-info">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
-                    <span th:text="${note.username}">Username</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="8" r="5"/>
+                            <path d="M20 21a8 8 0 1 0-16 0"/>
+                    </svg>
+                    <div class="left-info">
+                        <span class="noteUsername" th:text="${note.username}">Username</span>
+                    </div>
+                    <div class="action-buttons" th:if="${note.username} != ${#authentication.name}">
+                        <button class="follow-btn"
+                                th:attr="notes_username=${note.username}"
+                                th:if="${not #lists.contains(followedUsernames, note.username)}">Follow</button>
+
+                        <button class="follow-btn"
+                                disabled
+                                th:if="${#lists.contains(followedUsernames, note.username)}">Following ✓</button>
+
+                        <button class="save-btn">Save</button>
+                    </div>
                 </div>
+
                 <h2 class="topic" th:text="${note.topic}">Topic</h2>
                 <div class="subject" th:text="${note.subject}">Subject</div>
                 <p class="description" th:text="${note.about}">Description</p>
@@ -46,12 +67,12 @@
                     </svg>
                     Download Notes
                 </a>
-        </div>
+            </div>
 
-        <!-- If no results are found -->
-        <div th:if="${#lists.isEmpty(Results)}" class="no-results">
-            <p>No notes found matching your query.</p>
-        </div>
+            <!-- If no results are found -->
+            <div th:if="${#lists.isEmpty(Results)}" class="no-results">
+                <p><i>No notes found matching your query.</i></p>
+            </div>
         </div>
     </main>
     <script>
@@ -63,6 +84,43 @@
                     window.location.href = "/[[${#authentication.name}]]/search?query=" + query;
                 }
             }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const followButtons = document.querySelectorAll(".follow-btn");
+
+            const token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+            const header = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+            followButtons.forEach(btn => {
+                btn.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const usernameToFollow = this.getAttribute("notes_username");
+
+                    fetch("/api/follow", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                                [header]: token
+                },
+                        body: new URLSearchParams({
+                            usernameToFollow: usernameToFollow
+                        })
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                this.textContent = "Following ✓";
+                                this.disabled = true;
+                            } else {
+                                alert("Failed to follow user.");
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Error:", error);
+                            alert("Error occurred.");
+                        });
+                });
+            });
         });
     </script>
 </div>

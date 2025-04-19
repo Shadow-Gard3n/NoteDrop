@@ -5,6 +5,9 @@ import com.example.NoteDrop.dto.UserSaveDTO;
 import com.example.NoteDrop.service.NotesService;
 import com.example.NoteDrop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -86,6 +89,20 @@ public class BackendController {
 
         return "redirect:/" + username + "/home?uploadSuccess";
     }
+
+
+    @PostMapping("/follow")
+    @ResponseBody
+    public ResponseEntity<String> followUser(@RequestParam String usernameToFollow, @RequestHeader("X-CSRF-TOKEN") String csrfToken, Authentication authentication) {
+        String currentUsername = authentication.getName();
+        try {
+            userService.followUser(currentUsername, usernameToFollow);
+            return ResponseEntity.ok("Followed successfully");
+        }  catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred.");
+        }
+    }
+
 
 
 //    @PostMapping("/login")

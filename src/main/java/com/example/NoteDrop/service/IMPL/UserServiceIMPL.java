@@ -1,7 +1,9 @@
 package com.example.NoteDrop.service.IMPL;
 
 import com.example.NoteDrop.dto.UserSaveDTO;
+import com.example.NoteDrop.entity.Follow;
 import com.example.NoteDrop.entity.User;
+import com.example.NoteDrop.repo.FollowRepo;
 import com.example.NoteDrop.repo.UserRepo;
 import com.example.NoteDrop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 
 @Service
@@ -60,4 +63,38 @@ public class UserServiceIMPL implements UserService, UserDetailsService {
                 Collections.emptyList()
         );
     }
+
+    @Autowired
+    private FollowRepo followRepo;
+
+    public void followUser(String followerUsername, String followedUsername) {
+        if (followerUsername.equals(followedUsername)) {
+            throw new IllegalArgumentException("You cannot follow yourself.");
+        }
+
+        User follower = userRepo.findByUsername(followerUsername)
+                .orElseThrow(() -> new IllegalArgumentException("Follower user not found."));
+
+        User followed = userRepo.findByUsername(followedUsername)
+                .orElseThrow(() -> new IllegalArgumentException("User to follow not found."));
+
+        boolean alreadyFollowing = followRepo.existsByFollowerAndFollowed(follower, followed);
+        if (alreadyFollowing) {
+            throw new IllegalStateException("You are already following this user.");
+        }
+
+        Follow follow = new Follow();
+        follow.setFollower(follower);
+        follow.setFollowed(followed);
+
+        followRepo.save(follow);
+    }
+
+    @Override
+    public List<String> getFollowedUsernames(String username) {
+        User follower = userRepo.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+        return followRepo.findFollowedUsernamesByFollower(follower);
+    }
+
 }
