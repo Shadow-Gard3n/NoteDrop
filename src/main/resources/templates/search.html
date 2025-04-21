@@ -55,11 +55,11 @@
 
                         <button class="saving-btn"
                                 th:attr="data_username=${#authentication.name}, notes_id=${note.notesid}"
-                                th:if="${not #lists.contains(savedNotes, note)}">Save</button>
+                                th:if="${not #lists.contains(savedNoteIds, note.notesid)}">Save</button>
 
                         <button class="saving-btn"
                                 disabled
-                                th:if="${#lists.contains(savedNotes, note)}">Saved ✓</button>
+                                th:if="${#lists.contains(savedNoteIds, note.notesid)}">Saved ✓</button>
                     </div>
                 </div>
 

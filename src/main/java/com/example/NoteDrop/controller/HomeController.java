@@ -55,7 +55,6 @@ public class HomeController {
         }
         List<Notes> userNotes = notesService.notesByUsername(username);
 
-
         List<SavedNotes> savedNotes = savedNotesRepo.findByUsername(username);
         List<Integer> notesIds = savedNotes.stream()
                 .map(SavedNotes::getPdfId)
@@ -82,9 +81,13 @@ public class HomeController {
         }
         List<Notes> Results = notesService.searchNotes(query);
         List<String> followedUsernames = userService.getFollowedUsernames(authentication.getName());
-        List<SavedNotes> savedNotes = savedNotesRepo.findByUsername(authentication.getName());
-
-        model.addAttribute("savedNotes", savedNotes);
+//        List<SavedNotes> savedNotes = savedNotesRepo.findByUsername(authentication.getName());
+        List<Integer> savedNoteIds = savedNotesRepo.findByUsername(authentication.getName())
+                .stream()
+                .map(SavedNotes::getPdfId)
+                .toList();
+        model.addAttribute("savedNoteIds", savedNoteIds);
+//        model.addAttribute("savedNotes", savedNotes);
         model.addAttribute("followedUsernames", followedUsernames);
         model.addAttribute("Results", Results);
         model.addAttribute("query", query);

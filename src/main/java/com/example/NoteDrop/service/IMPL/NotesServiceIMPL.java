@@ -42,7 +42,6 @@ public class NotesServiceIMPL implements NotesService {
         savedNotes.setUsername(username);
         savedNotes.setPdfId(pdfId);
         savedNotesRepo.save(savedNotes);
-
         return true;
     }
 
