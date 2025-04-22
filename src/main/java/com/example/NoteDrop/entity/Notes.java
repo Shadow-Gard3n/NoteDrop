@@ -23,7 +23,7 @@ public class Notes {
     @Column(name = "about",length = 1000)
     private String about;
 
-    @Column(name = "file_path", length = 255, nullable = false)
+    @Column(name = "file_path", length = 500, nullable = false)
     private String filePath;
 
     public Notes() {

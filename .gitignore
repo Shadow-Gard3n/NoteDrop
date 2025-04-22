@@ -6,13 +6,14 @@ target/
 
 ### STS ###
 .apt_generated
+.env
 .classpath
 .factorypath
 .project
 .settings
 .springBeans
 .sts4-cache
-
+serviceAccountKey.json
 ### IntelliJ IDEA ###
 .idea
 *.iws
