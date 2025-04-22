@@ -21,25 +21,25 @@ NoteDrop is a web application that allows students to upload, share, and discove
 **Frontend:**
 - HTML5
 - CSS3
-- Responsive design
+- Javascript
 
 **Database:**
 - MySQL for relational data storage
-- Supabase for file storage (note attachments)
+- Supabase for file storage 
 
 ## Screenshots
 
 ### Welcome Page
-![Welcome Back - Please sign in to continue](https://i.imgur.com/placeholder1.png)
+<img src="https://github.com/user-attachments/assets/014d176f-225c-4357-bdd4-3df2925a2ba5" width="600"/>
 
 ### Note Upload Page
-![Share Your Knowledge - Upload and share your notes](https://i.imgur.com/placeholder2.png)
+<img src="https://github.com/user-attachments/assets/51990848-8851-40f4-95c2-672ee1761b68" width="600"/>
 
 ### User Profile Page
-![AryanGahlot's profile with published notes](https://i.imgur.com/placeholder3.png)
+<img src="https://github.com/user-attachments/assets/...third-image-id..." width="600"/>
 
 ### Search Results
-![Search Results for math showing Linear Algebra and Calculus notes](https://i.imgur.com/placeholder4.png)
+<img src="https://github.com/user-attachments/assets/...fourth-image-id..." width="600"/>
 
 ## Installation
 
