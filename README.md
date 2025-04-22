@@ -30,16 +30,16 @@ NoteDrop is a web application that allows students to upload, share, and discove
 ## Screenshots
 
 ### Welcome Page
-<img src="https://github.com/user-attachments/assets/014d176f-225c-4357-bdd4-3df2925a2ba5" width="600"/>
+<img src="https://github.com/user-attachments/assets/0b9fe8c7-e875-4529-ad59-ed75bd15f489" width="600"/>
 
 ### Note Upload Page
-<img src="https://github.com/user-attachments/assets/51990848-8851-40f4-95c2-672ee1761b68" width="600"/>
+<img src="https://github.com/user-attachments/assets/590ed631-2243-493f-ace9-1ca833f72cb6" width="600"/>
 
 ### User Profile Page
-<img src="https://github.com/user-attachments/assets/...third-image-id..." width="600"/>
+<img src="https://github.com/user-attachments/assets/24328650-9f52-4731-b814-12c566e04e69" width="600"/>
 
 ### Search Results
-<img src="https://github.com/user-attachments/assets/...fourth-image-id..." width="600"/>
+<img src="https://github.com/user-attachments/assets/c513ab62-d348-478b-a5ba-20025ed2fe50" width="600"/>
 
 ## Installation
 
