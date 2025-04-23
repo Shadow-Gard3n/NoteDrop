@@ -6,7 +6,7 @@ import com.example.NoteDrop.dto.SaveNotesDTO;
 import com.example.NoteDrop.dto.UserSaveDTO;
 import com.example.NoteDrop.service.NotesService;
 import com.example.NoteDrop.service.UserService;
-import com.google.cloud.storage.BlobInfo;
+//import com.google.cloud.storage.BlobInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.security.core.Authentication;
@@ -22,11 +22,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
-
-import com.google.firebase.cloud.StorageClient;
-import com.google.cloud.storage.Blob;
-import com.google.cloud.storage.Storage;
-import com.google.cloud.storage.StorageOptions;
+//import com.google.firebase.cloud.StorageClient;
+//import com.google.cloud.storage.Blob;
+//import com.google.cloud.storage.Storage;
+//import com.google.cloud.storage.StorageOptions;
 
 @Controller
 @CrossOrigin
