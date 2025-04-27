@@ -1,18 +1,8 @@
-FROM openjdk:17-jdk-slim
+FROM maven:3.8.5-openjdk-17 AS build
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Set working directory
-WORKDIR /app
-
-## Copy pom.xml and install dependencies (for Maven)
-#COPY pom.xml .
-#RUN ./mvnw dependency:go-offline
-
-# Copy source code and build the app (for Maven)
-#COPY src /app/src
-RUN ./mvnw clean package
-
-# Copy the JAR file from the target folder
-COPY target/*.jar app.jar
-
-# Run the JAR file
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+FROM openjdk:17.0.1-jdk-slim
+COPY --from=build /target/NoteDrop-0.0.1-SNAPSHOT.jar Notedrop.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","Notedrop.jar"]
