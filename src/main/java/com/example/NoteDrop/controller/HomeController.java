@@ -94,5 +94,22 @@ public class HomeController {
         model.addAttribute("username", username);
         return "search";
     }
+
+    @GetMapping("/connection")
+    public String connection(@PathVariable String username,
+                             @RequestParam(name = "search") String searchtype,
+                             Authentication authentication,
+                             Model model) {
+        if (!authentication.getName().equals(username)) {
+            return "redirect:/" + authentication.getName() + "/home";
+        }
+        List<String> followers= followRepo.findFollowersUsernamesByUsername(username);
+        List<String> following = followRepo.findFollowedUsernamesByUsername(username);
+        model.addAttribute("followers", followers);
+        model.addAttribute("following", following);
+        model.addAttribute("username", username);
+        model.addAttribute("searchtype", searchtype);
+        return "connection";
+    }
 }
 

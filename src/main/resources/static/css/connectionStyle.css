@@ -1,0 +1,70 @@
+/* connectionStyle.css */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.back-button {
+    text-decoration: none;
+    color: #3498db;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.back-button:hover {
+    color: #2c80b4;
+}
+
+.user-list h3 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333333;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+.user-item {
+    background-color: #f1f1f1;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.user-item:hover {
+    background-color: #e0e0e0;
+}
+
+.username {
+    font-size: 18px;
+    color: #555555;
+}
+
+p {
+    text-align: center;
+    color: #888888;
+    font-size: 16px;
+}

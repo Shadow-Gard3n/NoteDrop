@@ -42,14 +42,24 @@
                             <span class="stat-value" th:text="${notesCount}">...</span>
                             <span class="stat-label">Notes</span>
                         </div>
-                        <div class="stat-item">
+<!--                        <div class="stat-item">-->
+<!--                            <span class="stat-value" th:text="${followersCount}">...</span>-->
+<!--                            <span class="stat-label">Followers</span>-->
+<!--                        </div>-->
+<!--                        <div class="stat-item">-->
+<!--                            <span class="stat-value" th:text="${followingCount}">...</span>-->
+<!--                            <span class="stat-label">Following</span>-->
+<!--                        </div>-->
+                        <a th:href="@{/{username}/connection(username=${#authentication.name}, search='followers')}"
+                           class="stat-item" style="text-decoration: none;">
                             <span class="stat-value" th:text="${followersCount}">...</span>
                             <span class="stat-label">Followers</span>
-                        </div>
-                        <div class="stat-item">
+                        </a>
+                        <a th:href="@{/{username}/connection(username=${#authentication.name}, search='following')}"
+                           class="stat-item" style="text-decoration: none;">
                             <span class="stat-value" th:text="${followingCount}">...</span>
                             <span class="stat-label">Following</span>
-                        </div>
+                        </a>
                     </div>
                 </div>
 

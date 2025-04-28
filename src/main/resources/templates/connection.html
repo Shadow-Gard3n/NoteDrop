@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/connectionStyle.css}">
+    <title>Connections</title>
+</head>
+<body>
+<div class="container">
+    <header>
+        <a th:href="@{'/' + ${#authentication.name} + '/profile'}" class="back-button">← Back to Profile</a>
+    </header>
+
+    <div class="user-list">
+        <div th:if="${searchtype == 'followers'}">
+            <h3>Followers</h3>
+            <div class="user-item" th:each="follower : ${followers}">
+                <span class="username" th:text="'@' + ${follower}">...</span>
+            </div>
+            <div th:if="${followers.isEmpty()}">
+                <p>No followers yet.</p>
+            </div>
+        </div>
+
+        <!-- Show following if searchtype == 'following' -->
+        <div th:if="${searchtype == 'following'}">
+            <h3>Following</h3>
+            <div class="user-item" th:each="user : ${following}">
+                <span class="username" th:text="'@' + ${user}">...</span>
+            </div>
+            <div th:if="${following.isEmpty()}">
+                <p>Not following anyone yet.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
