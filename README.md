@@ -1,17 +1,28 @@
-# NoteDrop - Notes Sharing Platform
+# 📚 NoteDrop - Notes Sharing Platform
 
-NoteDrop is a web application that allows students to upload, share, and discover educational notes across various subjects. Built with Spring Boot for the backend and HTML/CSS/Thymeleaf for the frontend.
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fnotedrop.onrender.com&label=Visit%20NoteDrop&style=for-the-badge)](https://notedrop.onrender.com)
 
-## Features
+**Live Website:** [https://notedrop.onrender.com](https://notedrop.onrender.com)
 
-- User authentication (sign up/login)
-- Upload and share notes with metadata (subject, topic, description)
-- Search and browse notes by subject or keywords
-- User profiles with published notes
-- Follow other users
-- Save favorite notes
+---
 
-## Technology Stack
+NoteDrop is a web application that allows students to upload, share, and discover educational notes across various subjects.  
+Built with **Spring Boot** for the backend and **HTML/CSS/Thymeleaf** for the frontend.
+
+---
+
+## ✨ Features
+
+- 🔒 User authentication (sign up/login)
+- 📄 Upload and share notes with metadata (subject, topic, description)
+- 🔍 Search and browse notes by subject or keywords
+- 👤 User profiles with published notes
+- ➕ Follow other users
+- 📚 Save favorite notes
+
+---
+
+## 🛠️ Technology Stack
 
 **Backend:**
 - Spring Boot (Java)
@@ -21,13 +32,54 @@ NoteDrop is a web application that allows students to upload, share, and discove
 **Frontend:**
 - HTML5
 - CSS3
-- Javascript
+- JavaScript
 
-**Database:**
+**Database and Storage:**
 - MySQL for relational data storage
-- Supabase for file storage 
+- Supabase for file storage
 
-## Screenshots
+**Deployment:**
+- Render (for hosting the backend and frontend)
+
+---
+
+## 📂 Project Structure
+
+```bash
+NoteDrop/
+├── src/
+│   └── main/
+│       ├── java/
+│       │   └── com/
+│       │       └── example/
+│       │           └── NoteDrop/
+│       │               ├── config/
+│       │               │   └── SecurityConfig.java
+│       │               ├── controller/
+│       │               │   └── (All controller files)
+│       │               ├── dto/
+│       │               │   └── (All DTO files)
+│       │               ├── entity/
+│       │               │   └── (All entity files)
+│       │               ├── repo/
+│       │               │   └── (All repository interfaces)
+│       │               └── service/
+│       │                   ├── IMPL/
+│       │                   │   └── (Service implementation files)
+│       │                   └── (Service interface files)
+│       └── resources/
+│           ├── static/
+│           │   └── css/
+│           │       └── (CSS files)
+│           ├── templates/
+│           │   └── (HTML files)
+│           └── application.properties
+├── Dockerfile
+├── pom.xml
+├── .env
+```
+
+## 📸 Screenshots
 
 ### Welcome Page
 <img src="https://github.com/user-attachments/assets/0b9fe8c7-e875-4529-ad59-ed75bd15f489" width="600"/>
@@ -41,8 +93,12 @@ NoteDrop is a web application that allows students to upload, share, and discove
 ### Search Results
 <img src="https://github.com/user-attachments/assets/c513ab62-d348-478b-a5ba-20025ed2fe50" width="600"/>
 
-## Installation
+---
+
+## 🚀 Installation
 
 1. Clone the repository:
    ```bash
    git clone https://github.com/Shadow-Gard3n/NoteDrop.git
+   cd NoteDrop
+   
