@@ -1,9 +1,8 @@
 # 📚 NoteDrop - Notes Sharing Platform
 
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Fnotedrop.onrender.com&label=Visit%20NoteDrop&style=for-the-badge)](https://notedrop.onrender.com)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fnotedrop-wlm0.onrender.com&label=Visit%20NoteDrop&style=for-the-badge)](https://notedrop-wlm0.onrender.com)
 
-**Live Website:** [https://notedrop.onrender.com](https://notedrop.onrender.com) 
-> _Currently Unavailable — Working on restoring service. Stay tuned!_
+**Live Website:** [https://notedrop-wlm0.onrender.com](https://notedrop-wlm0.onrender.com)
 
 ---
 
@@ -36,7 +35,7 @@ Built with **Spring Boot** for the backend and **HTML/CSS/Thymeleaf** for the fr
 - JavaScript
 
 **Database and Storage:**
-- MySQL for relational data storage
+- MongoDB for data storage
 - Supabase for file storage
 
 **Deployment:**
