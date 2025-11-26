@@ -2,7 +2,8 @@
 
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fnotedrop.onrender.com&label=Visit%20NoteDrop&style=for-the-badge)](https://notedrop.onrender.com)
 
-**Live Website:** [https://notedrop.onrender.com](https://notedrop.onrender.com)
+**Live Website:** [https://notedrop.onrender.com](https://notedrop.onrender.com) 
+> _Currently Unavailable — Working on restoring service. Stay tuned!_
 
 ---
 
