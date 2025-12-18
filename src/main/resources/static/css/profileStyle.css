@@ -1,42 +1,55 @@
+/* --- Base Reset --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #f3f4f6;
     min-height: 100vh;
-    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
 }
 
-.container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
+/* --- Responsive Navbar --- */
 .navbar {
     background-color: white;
-    padding: 1rem 2rem;
+    padding: 0.75rem 1.5rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; /* Spreads elements evenly */
+    gap: 1rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1f2937;
+    text-decoration: none;
+    flex-shrink: 0; /* Prevents logo from squishing */
+}
+
+.notes-icon {
+    color: #2563eb;
+}
+
+/* --- Flexible Search Bar --- */
 .search-container {
     display: flex;
     align-items: center;
     background-color: #f3f4f6;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
-    width: 300px;
-}
-
-.search-icon {
-    color: #6b7280;
-    margin-right: 0.5rem;
+    flex: 1;            /* Grows to fill available space */
+    max-width: 450px;   /* Limits size on large screens */
+    margin: 0 auto;     /* Centers the search bar */
 }
 
 .search-input {
@@ -47,26 +60,6 @@ body {
     font-size: 0.875rem;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #1f2937;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    margin-left: -200px;
-}
-
-.logo:hover {
-    color: #3b82f6;
-}
-
-.notes-icon {
-    color: #2563eb;
-}
-
 .profile-btn {
     display: flex;
     align-items: center;
@@ -75,17 +68,37 @@ body {
     height: 2.5rem;
     background-color: #3b82f6;
     color: white;
-    border: none;
     border-radius: 50%;
     text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
 }
 
-.profile-btn:hover {
-    background-color: #f3f4f6;
+/* --- Mobile Media Query (Phones) --- */
+@media (max-width: 640px) {
+    .navbar {
+        padding: 0.6rem 1rem;
+        gap: 0.75rem;
+    }
+
+    .logo-text {
+        display: none; /* Hides "NoteDrop" text, keeps the icon */
+    }
+
+    .search-container {
+        padding: 0.4rem 0.75rem;
+    }
+
+    .search-input::placeholder {
+        font-size: 0.75rem; /* Smaller text for small screens */
+    }
 }
 
+/* --- Tablet/Small Desktop Adjustment --- */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .search-container {
+        max-width: 300px;
+    }
+}
 
 /* Profile Page Styles */
 .profile-content {

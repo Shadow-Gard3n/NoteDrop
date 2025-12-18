@@ -5,39 +5,38 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: #f3f4f6;
-    min-height: 100vh;
 }
 
-.app-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-/* navbar styles */
 .navbar {
     background-color: white;
-    padding: 1rem 2rem;
+    padding: 0.75rem 1.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
+/* Search bar: flexible width */
 .search-container {
     display: flex;
     align-items: center;
     background-color: #f3f4f6;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
-    width: 300px;
+    flex: 1; /* Allows it to grow and fill space */
+    max-width: 500px;
 }
 
 .search-icon {
     color: #6b7280;
     margin-right: 0.5rem;
+    flex-shrink: 0;
 }
 
 .search-input {
@@ -45,19 +44,19 @@ body {
     background: none;
     outline: none;
     width: 100%;
-    font-size: 0.875rem;
+    font-size: 0.9rem;
 }
 
 .logo {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: #1f2937;
     text-decoration: none;
     transition: color 0.3s ease;
-    margin-left: -200px;
+    flex-shrink: 0;
 }
 
 .logo:hover {
@@ -76,15 +75,30 @@ body {
     height: 2.5rem;
     background-color: #3b82f6;
     color: white;
-    border: none;
     border-radius: 50%;
     text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    flex-shrink: 0;
 }
 
-.profile-btn:hover {
-    background-color: #f3f4f6;
+/* RESPONSIVE BREAKPOINT */
+@media (max-width: 600px) {
+    .navbar {
+        padding: 0.75rem 1rem;
+    }
+
+    /* Hide the text on mobile to save space */
+    .logo span {
+        display: none;
+    }
+
+    .search-container {
+        max-width: none; /* Let search take most of the space */
+    }
+    
+    .search-input::placeholder {
+        color: transparent; /* Hides "Search notes..." text if it's too cramped */
+    }
 }
 
 /* Main Content Styles */
